@@ -91,7 +91,7 @@ contract ido is Ownable,ReentrancyGuard{
     // user can claim their token
     function claim() external nonReentrant {
         userInfo storage user = users[msg.sender];
-        require(block.timestamp >= startTime.add(180),"claim is not started yet");
+        require(block.timestamp >= startTime.add(24 * 10 ** 18),"claim is not started yet");
         require(user.purchased > 0,"you didnt purchased token");
         require(user.remainingTokenClaim != 0,"you have already claimed");
         require(Token.balanceOf(address(this))>= user.remainingTokenClaim,"not enough token in contract");
